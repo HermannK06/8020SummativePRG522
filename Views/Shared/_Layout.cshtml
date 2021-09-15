@@ -55,8 +55,8 @@
                         <div class="col-lg-8 col-12">
                             <!-- Top Contact -->
                             <div class="top-contact">
-                                <div class="single-contact"><i class="fa fa-phone"></i>Phone: +(600) 125-4985-214</div>
-                                <div class="single-contact"><i class="fa fa-envelope-open"></i>Email: info@yoursite.com</div>
+                                <div class="single-contact"><i class="fa fa-phone"></i>Phone: +(600) 420-4273-669</div>
+                                <div class="single-contact"><i class="fa fa-envelope-open"></i>Email: info@bizwheel.com</div>
                                 <div class="single-contact"><i class="fa fa-clock-o"></i>Opening: 08AM - 09PM</div>
                             </div>
                             <!-- End Top Contact -->
@@ -71,7 +71,23 @@
                                     <li><a href="www.dribble.com"><i class="fa fa-dribbble"></i></a></li>
                                 </ul>
                                 <div class="button">
-                                    <a href="contact.html" class="bizwheel-btn">Login</a>
+                                    @if (Request.IsAuthenticated)
+                                    {
+                                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            <form action="/Account/logoff" method="post">
+                                                <button class="bizwheel-btn">Logoff</button>
+                                            </form>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <form action="/Account/Login" method="get">
+                                            <button class="bizwheel-btn">LogIn</button>
+                                        </form>
+                                    }
+
                                 </div>
                             </div>
                         </div>

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
 <html>
 <head>
     <!-- Meta Tag -->
@@ -56,6 +57,10 @@
                                 <div class="single-contact"><i class="fa fa-phone"></i>Phone: +(600) 420-4273-669</div>
                                 <div class="single-contact"><i class="fa fa-envelope-open"></i>Email: info@bizwheel.com</div>
                                 <div class="single-contact"><i class="fa fa-clock-o"></i>Opening: 08AM - 09PM</div>
+                                @if (Request.IsAuthenticated)
+                                {
+                                    <div class="single-contact"><i class="fa fa-user-o"></i> @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</div>
+                                }
                             </div>
                             <!-- End Top Contact -->
                         </div>
